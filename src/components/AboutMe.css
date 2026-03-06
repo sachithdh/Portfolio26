@@ -4,66 +4,7 @@
   padding: 0;
   position: relative;
   overflow: hidden;
-}
-
-.about-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 4rem;
-  position: relative;
-  z-index: 10;
-}
-
-.logo {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logo::before {
-  content: "";
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(45deg, var(--accent-lime) 0%, var(--accent-teal) 100%);
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  margin-bottom: 0.3rem;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 3rem;
-}
-
-.nav-menu a {
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.nav-menu a:hover {
-  color: var(--accent-lime);
-}
-
-.nav-menu a::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-lime);
-  transition: width 0.3s ease;
-}
-
-.nav-menu a:hover::after {
-  width: 100%;
+  padding-top: 10px;
 }
 
 .about-content {
@@ -82,41 +23,28 @@
   font-family: var(--font-display);
 }
 
-.sparkle {
-  position: absolute;
-  animation: sparkleFloat 3s ease-in-out infinite;
+/* Intro / profile summary under the title */
+.about-profile {
+  max-width: 920px;
+  margin: 0.25rem auto 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
 }
 
-.sparkle path {
-  fill: var(--accent-lime);
-}
-
-.sparkle-left {
-  top: 8rem;
-  left: 15%;
-  animation-delay: 0s;
-}
-
-.sparkle-right {
-  top: 8rem;
-  right: 15%;
-  animation-delay: 1.5s;
-}
-
-@keyframes sparkleFloat {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(180deg);
-  }
+.about-profile .info-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.95;
 }
 
 .about-layout {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
+  grid-template-columns: 2fr 2fr;
   gap: 3rem;
-  align-items: start;
+  align-items: stretch;
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 0;
@@ -128,10 +56,11 @@
   flex-direction: column;
   gap: 2.5rem;
   padding-top: 2rem;
+  min-height: 100%;
 }
 
 .info-block {
-  text-align: left;
+  text-align: right;
 }
 
 .info-label {
@@ -152,11 +81,13 @@
 
 .scroll-indicator {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-size: 0.85rem;
   color: var(--text-muted);
+  animation: bounce 2s ease-in-out infinite;
 }
 
 .scroll-indicator svg rect {
@@ -167,12 +98,13 @@
   fill: var(--text-muted);
 }
 
-/* Center Content */
-.center-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
 
 .profile-image-container {
@@ -207,10 +139,11 @@
   gap: 2.5rem;
   padding-top: 2rem;
   text-align: right;
+  min-height: 100%;
 }
 
 .stat-block {
-  text-align: right;
+  text-align: left;
 }
 
 .stat-label {
@@ -223,7 +156,7 @@
 }
 
 .stat-value {
-  font-size: 3rem;
+  font-size: 1.686rem;
   font-weight: 300;
   color: var(--accent-lime);
   line-height: 1;
@@ -236,18 +169,18 @@
   content: "";
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(to right, transparent, rgba(207, 246, 114, 0.2) 20%, rgba(207, 246, 114, 0.2) 80%, transparent);
   left: 0;
 }
 
 .about-me-section::before {
-  top: 15%;
+  top: 5%;
   transform: rotate(-2deg);
 }
 
 .about-me-section::after {
-  bottom: 15%;
+  bottom: 5%;
   transform: rotate(2deg);
 }
 
