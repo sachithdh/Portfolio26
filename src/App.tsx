@@ -4,7 +4,6 @@ import SynthEraHero from "./sections/hero/SynthEraHero";
 import AboutMe from "./sections/aboutMe/AboutMe";
 import SkillsTechnologies from "./sections/skillsTechnologies/SkillsTechnologies";
 import ContactMe from "./sections/contactMe/ContactMe";
-import Footer from "./components/Footer";
 
 function App() {
   return (

@@ -5,6 +5,99 @@ import "./ContactMe.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ─── marquee items rendered inside each track ─── */
+const MARQUEE_ITEMS = [
+  { text: "LET'S CONNECT", style: "filled" },
+  { text: "✦", style: "sep" },
+  { text: "LET'S CONNECT", style: "outline" },
+  { text: "✦", style: "sep" },
+  { text: "LET'S CONNECT", style: "filled" },
+  { text: "✦", style: "sep" },
+  { text: "LET'S CONNECT", style: "outline" },
+  { text: "✦", style: "sep" },
+  { text: "LET'S CONNECT", style: "filled" },
+  { text: "✦", style: "sep" },
+  { text: "LET'S CONNECT", style: "outline" },
+  { text: "✦", style: "sep" },
+];
+
+/* Renders one full copy of the marquee list */
+const MarqueeList = () => (
+  <>
+    {MARQUEE_ITEMS.map((item, i) => (
+      <span
+        key={i}
+        className={`cm-marquee-item cm-marquee-item--${item.style}`}
+      >
+        {item.text}
+      </span>
+    ))}
+  </>
+);
+
+/* ─── Infinite Marquee Banner component ─── */
+const MarqueeBanner = () => {
+  const track1Ref = useRef<HTMLDivElement>(null);
+  const track2Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const tracks = [
+      { el: track1Ref.current, dir: -1 },   // scrolls left
+      { el: track2Ref.current, dir: 1 },   // scrolls right
+    ];
+
+    const tickerCallbacks: (() => void)[] = [];
+
+    tracks.forEach(({ el, dir }) => {
+      if (!el) return;
+
+      // place the element at half-width so the seam is invisible
+      let xPos = dir === -1 ? 0 : -el.scrollWidth / 2;
+      const speed = 0.6; // px per frame
+
+      const tick = () => {
+        xPos += dir * speed;
+        const half = el.scrollWidth / 2;
+        // reset seamlessly when one full copy has scrolled past
+        if (dir === -1 && xPos <= -half) xPos += half;
+        if (dir === 1 && xPos >= 0) xPos -= half;
+        gsap.set(el, { x: xPos });
+      };
+
+      gsap.ticker.add(tick);
+      tickerCallbacks.push(tick);
+    });
+
+    return () => {
+      tickerCallbacks.forEach((cb) => gsap.ticker.remove(cb));
+    };
+  }, []);
+
+  return (
+    <div className="cm-marquee-banner">
+      {/* edge gradient masks */}
+      <div className="cm-marquee-fade cm-marquee-fade--left" />
+      <div className="cm-marquee-fade cm-marquee-fade--right" />
+
+      {/* Track 1 — scrolls left */}
+      <div className="cm-marquee-row">
+        <div className="cm-marquee-track" ref={track1Ref}>
+          <MarqueeList />
+          <MarqueeList />
+        </div>
+      </div>
+
+      {/* Track 2 — scrolls right */}
+      <div className="cm-marquee-row">
+        <div className="cm-marquee-track" ref={track2Ref}>
+          <MarqueeList />
+          <MarqueeList />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const socialLinks = [
   { label: "GitHub", href: "https://www.github.com/sachithdh" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/sachithdh/" },
@@ -63,6 +156,9 @@ const ContactMe = () => {
       {/* Ambient glows */}
       <div className="cm-glow cm-glow--left" />
       <div className="cm-glow cm-glow--right" />
+
+      {/* ── Infinite Marquee Banner ── */}
+      <MarqueeBanner />
 
       <div className="cm-container">
         {/* Big heading */}
