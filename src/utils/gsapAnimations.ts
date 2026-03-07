@@ -230,3 +230,31 @@ export const revealOnScroll = (elements: string | Element, options = {}) => {
     ...options,
   });
 };
+
+export const useExitAnimation = (direction: 'left' | 'right' = 'left') => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const children = ref.current.children;
+    const xDirection = direction === 'left' ? -300 : 300;
+
+    gsap.to(children, {
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'bottom center',
+        end: 'bottom top',
+        scrub: 1,
+        markers: false,
+      },
+      x: xDirection,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: 'power2.in',
+    });
+  }, [direction]);
+
+  return ref;
+};

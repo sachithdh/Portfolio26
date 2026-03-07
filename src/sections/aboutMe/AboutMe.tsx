@@ -1,12 +1,12 @@
 import "./AboutMe.css";
-import ScrollAnimation from "../utils/scrollAnimation";
-import { useFadeInUp, useStaggerChildren } from "../utils/gsapAnimations";
+import ScrollAnimation from "../../utils/scrollAnimation";
+import { useFadeInUp, useExitAnimation } from "../../utils/gsapAnimations";
 
 const AboutMe = () => {
   const titleRef = useFadeInUp(0);
   const profileRef = useFadeInUp(0.2);
-  const leftContentRef = useStaggerChildren(0.3, 0.15);
-  const rightContentRef = useStaggerChildren(0.5, 0.15);
+  const leftExitRef = useExitAnimation("left");
+  const rightExitRef = useExitAnimation("right");
 
   return (
     <div className="about-me-section">
@@ -26,7 +26,7 @@ const AboutMe = () => {
           </p>
         </div>
         <div className="about-layout">
-          <div className="left-content" ref={leftContentRef as any}>
+          <div className="left-content" ref={leftExitRef as any}>
             <div className="info-block">
               <h3 className="info-label">UNDERGRADUATE</h3>
               <p className="info-text">
@@ -55,7 +55,7 @@ const AboutMe = () => {
               </p>
             </div>
           </div>
-          <div className="right-content" ref={rightContentRef as any}>
+          <div className="right-content" ref={rightExitRef as any}>
             <div className="stat-block">
               <h3 className="stat-label">GPA</h3>
               <p className="stat-value">3.8 / 4.0</p>
