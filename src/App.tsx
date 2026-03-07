@@ -14,6 +14,7 @@ function App() {
       <FeaturedProjects />
       <SkillsTechnologies />
       <ContactMe />
+      <ContactMe />
     </main>
   );
 }
