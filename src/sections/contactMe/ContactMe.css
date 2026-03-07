@@ -249,6 +249,90 @@
     text-transform: uppercase;
 }
 
+.cm-marquee-banner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    border-top: 1px solid rgba(207, 246, 114, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0;
+}
+
+/* Each horizontal row */
+.cm-marquee-row {
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.cm-marquee-row:first-of-type {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* The sliding track – must be wider than the viewport */
+.cm-marquee-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    gap: 0;
+}
+
+/* Individual marquee items */
+.cm-marquee-item {
+    display: inline-block;
+    padding: 0 28px;
+    font-family: var(--font-display, 'Inter', sans-serif);
+    font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    user-select: none;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+/* Filled variant – solid white text */
+.cm-marquee-item--filled {
+    color: #ffffff;
+}
+
+/* Outline variant – transparent text with stroke */
+.cm-marquee-item--outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
+}
+
+/* Separator – lime accent diamond ✦ */
+.cm-marquee-item--sep {
+    color: #cff672;
+    font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+    padding: 0 6px;
+    opacity: 0.85;
+    letter-spacing: 0;
+}
+
+/* Edge gradient fade masks */
+.cm-marquee-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 160px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.cm-marquee-fade--left {
+    left: 0;
+    background: linear-gradient(to right, #0a0a0a 0%, transparent 100%);
+}
+
+.cm-marquee-fade--right {
+    right: 0;
+    background: linear-gradient(to left, #0a0a0a 0%, transparent 100%);
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
     .cm-container {
