@@ -83,7 +83,7 @@
 /* ---- Projects Grid ---- */
 .fp-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   margin-bottom: 60px;
 }
@@ -91,6 +91,7 @@
 /* ---- Project Card ---- */
 .fp-card {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   gap: 0;
   cursor: pointer;

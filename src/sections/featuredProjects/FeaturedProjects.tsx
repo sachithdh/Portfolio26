@@ -87,30 +87,6 @@ const projects: Project[] = [
             "/images/placeholder.png",
         ],
     },
-    {
-        id: 4,
-        title: "Berumah – Real Estate Landing Page",
-        subtitle: "Landing Page",
-        description:
-            "This time I made a landing page design about a real estate website with a modern look.",
-        image: "/images/placeholder.png",
-        category: "case-study",
-        link: "#",
-        keyFeatures: [
-            "Property listing design",
-            "Location-based search",
-            "Modern landing layout",
-            "Responsive design system",
-            "Premium visual aesthetics",
-        ],
-        gallery: [
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-        ],
-    },
 ];
 
 type FilterTab = "exploration" | "case-study";
@@ -166,7 +142,7 @@ export default function FeaturedProjects() {
                         className={`fp-tab ${activeTab === "case-study" ? "fp-tab--active" : ""}`}
                         onClick={() => setActiveTab("case-study")}
                     >
-                        Case Study
+                        Research Study
                     </button>
                 </div>
 
