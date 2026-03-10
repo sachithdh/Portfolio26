@@ -46,9 +46,6 @@ export default function WorkExperience() {
               range of projects, collaborating with diverse teams and clients to
               deliver innovative software solutions.
             </p>
-            <a href="#contact" className="work-cta-link">
-              Schedule a Call ↗
-            </a>
           </div>
         </div>
       </div>
