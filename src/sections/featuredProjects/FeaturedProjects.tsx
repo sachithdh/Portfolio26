@@ -2,104 +2,97 @@ import { useState, useEffect } from "react";
 import { useFadeInUp, useStaggerChildren } from "../../utils/gsapAnimations";
 import "./FeaturedProjects.css";
 
+
 interface Project {
     id: number;
     title: string;
     subtitle: string;
     description: string;
     image: string;
-    category: "exploration" | "case-study";
-    link: string;
+    codeLink: string;
     keyFeatures: string[];
-    gallery: string[];
+    technologies: string[];
+    gallery?: string[];
 }
 
 const projects: Project[] = [
     {
         id: 1,
-        title: "Gege Gemink – Games Streaming Dashboard",
-        subtitle: "Web Dashboard",
+        title: "LearnHub - Tutor & Student Discovery Platform",
+        subtitle: "Web Platform",
         description:
-            "With the concept of this website you can see your idols playing games when you are live streaming with a very clean display.",
-        image: "/images/placeholder.png",
-        category: "exploration",
-        link: "#",
+            "LearnHub is a web platform designed to help independent tutors in Sri Lanka promote their classes while allowing students to discover tutors that match their learning needs. The system was built completely from scratch without using any frameworks, including a custom PHP-based MVC architecture.",
+        image: "/images/projects/learnhub.png",
+        codeLink: "https://github.com/sachithdh/LearnHub",
         keyFeatures: [
-            "Live streaming integration",
-            "Clean & modern UI",
-            "Real-time chat system",
-            "Streamer profile cards",
-            "Dark theme design",
+            "Custom-built PHP MVC framework",
+            "Dependency Injection container for service management",
+            "Secure authentication and middleware pipeline",
+            "Course and tutor discovery system",
+            "Lightweight custom template engine for fast server-side rendering",
+            "Custom MySQL database abstraction layer",
+            "Secure session management and route protection",
         ],
-        gallery: [
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-        ],
+        technologies: ["PHP", "MYSQL", "NGINX", "HTML", "CSS", "JAVASCRIPT", "GIT"],
     },
     {
         id: 2,
-        title: "Musikin Aja – Music Player App",
-        subtitle: "Mobile App Design",
+        title: "brainMap - Project Management & Mentoring Platform",
+        subtitle: "Web Platform",
         description:
-            "In this exploratory design, I created a mobile app design regarding a music player application.",
-        image: "/images/placeholder.png",
-        category: "exploration",
-        link: "#",
+            "An all-in-one collaboration platform that brings together project management, mentoring, real-time communication, and community engagement into a single ecosystem. The backend is built with Spring Boot using a scalable RESTful architecture, with secure authentication and real-time capabilities to support seamless collaboration.",
+        image: "/images/projects/brainMap.png",
+        codeLink: "https://github.com/brain-Map",
         keyFeatures: [
-            "Music streaming interface",
-            "Playlist management",
-            "Artist discovery",
-            "Minimalist UI approach",
-            "Cross-platform design",
+            "Project management and mentoring system",
+            "Real-time communication and collaboration",
+            "Scalable RESTful API built with Spring Boot",
+            "PostgreSQL database with Supabase authentication",
+            "Secure user authentication and data management",
+            "CI/CD pipeline with GitHub Actions",
+            "Containerized deployment with Docker",
+            "Automated deployment to AWS EC2 via Amazon ECR",
         ],
-        gallery: [
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-        ],
+        technologies: ["Spring Boot", "TypeScript", "PostgreSQL", "Supabase", "Docker", "AWS", "GitHub Actions"],
     },
     {
         id: 3,
-        title: "Task Management – Mobile App",
-        subtitle: "Mobile App Design",
+        title: "Swift Logistics - Logistics & Courier Management Platform",
+        subtitle: "Web Platform",
         description:
-            "In this exploration design, I created a ui design regarding the task manager with a very clean and pleasing appearance to the eyes. 😊",
-        image: "/images/placeholder.png",
-        category: "exploration",
-        link: "#",
+            "A modern full-stack logistics ecosystem built as a learning project to explore middleware integration patterns. The system connects administrators, drivers, and clients through real-time shipment tracking, automated workflows, and centralized operations management. At its core, the platform uses WSO2 Micro Integrator (ESB) to orchestrate communication between multiple services and protocols across the system.",
+        image: "/images/projects/swift.png",
+        codeLink: "https://github.com/orgs/SwiftLogistics-co/repositories",
         keyFeatures: [
-            "Daily task tracking",
-            "Drag & drop interface",
-            "Priority categorization",
-            "Progress analytics",
-            "Clean visual hierarchy",
+            "Centralized admin dashboard for logistics operations",
+            "Real-time parcel tracking and shipment updates",
+            "Driver mobile interface for order handling and navigation",
+            "Client portal for shipment tracking and delivery history",
+            "Scalable RESTful APIs with Node.js and Express",
+            "Real-time caching and tracking with Redis",
+            "Interactive route mapping with Google Maps / Mapbox",
+            "Containerized deployment with Docker and CI/CD automation",
         ],
-        gallery: [
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
-            "/images/placeholder.png",
+        technologies: [
+            "Node.js",
+            "Express.js",
+            "Python",
+            "Java",
+            "PostgreSQL",
+            "React.js",
+            "Docker",
+            "Kafka"
         ],
     },
 ];
 
-type FilterTab = "exploration" | "case-study";
+// type FilterTab = "exploration" | "case-study";
 
 export default function FeaturedProjects() {
-    const [activeTab, setActiveTab] = useState<FilterTab>("exploration");
+    // const [activeTab, setActiveTab] = useState<FilterTab>("exploration");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const headerRef = useFadeInUp(0);
     const gridRef = useStaggerChildren(0.2, 0.15);
-
-    const filteredProjects = projects.filter(
-        (p) => p.category === activeTab || activeTab === "exploration"
-    );
 
     // Lock body scroll when modal is open
     useEffect(() => {
@@ -131,7 +124,7 @@ export default function FeaturedProjects() {
                 </h2>
 
                 {/* Filter Tabs */}
-                <div className="fp-tabs">
+                {/* <div className="fp-tabs">
                     <button
                         className={`fp-tab ${activeTab === "exploration" ? "fp-tab--active" : ""}`}
                         onClick={() => setActiveTab("exploration")}
@@ -144,17 +137,19 @@ export default function FeaturedProjects() {
                     >
                         Research Study
                     </button>
-                </div>
+                </div> */}
 
                 {/* Projects Grid */}
                 <div className="fp-grid" ref={gridRef as any}>
-                    {filteredProjects.map((project) => (
+                    {projects.map((project) => (
                         <div
                             className="fp-card"
                             key={project.id}
-                            onClick={() => setSelectedProject(project)}
                         >
-                            <div className="fp-card__image-wrapper">
+                            <div
+                                className="fp-card__image-wrapper"
+                                onClick={() => setSelectedProject(project)}
+                            >
                                 <img
                                     src={project.image}
                                     alt={project.title}
@@ -162,12 +157,47 @@ export default function FeaturedProjects() {
                                 />
                             </div>
                             <div className="fp-card__content">
-                                <h3 className="fp-card__title">{project.title}</h3>
+                                <h3
+                                    className="fp-card__title"
+                                    onClick={() => setSelectedProject(project)}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    {project.title}
+                                </h3>
+                                {/* Tech badges – flat list of all tech values */}
+                                {Object.keys(project.technologies).length > 0 && (
+                                    <div className="fp-card__tech-stack">
+                                        {Object.values(project.technologies)
+                                            .map((tech) => (
+                                                <span key={tech} className="fp-card__tech-badge">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                    </div>
+                                )}
                                 <p className="fp-card__desc">{project.description}</p>
-                                <span className="fp-card__link">
-                                    View Full Here{" "}
-                                    <span className="fp-card__link-arrow">↗</span>
-                                </span>
+                                <div className="fp-card__actions">
+                                    <button
+                                        className="fp-card__btn fp-card__btn--primary"
+                                        onClick={() => setSelectedProject(project)}
+                                    >
+                                        View More
+                                        <span className="fp-card__btn-arrow">↗</span>
+                                    </button>
+                                    <a
+                                        href={project.codeLink}
+                                        className="fp-card__btn fp-card__btn--secondary"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        View Code
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="16 18 22 12 16 6" />
+                                            <polyline points="8 6 2 12 8 18" />
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -175,7 +205,7 @@ export default function FeaturedProjects() {
 
                 {/* See More Button */}
                 <div className="fp-see-more-wrapper">
-                    <a href="#" className="fp-see-more-btn">
+                    <a href="https://github.com/sachithdh?tab=repositories" className="fp-see-more-btn">
                         See More
                     </a>
                 </div>
@@ -202,64 +232,92 @@ export default function FeaturedProjects() {
                             </svg>
                         </button>
 
-                        <div className="fp-modal__body">
-                            {/* Left – Info */}
-                            <div className="fp-modal__info">
-                                <h3 className="fp-modal__title">{selectedProject.title}</h3>
-                                <span className="fp-modal__subtitle">
-                                    {selectedProject.subtitle}
-                                </span>
-
-                                <p className="fp-modal__desc">{selectedProject.description}</p>
-
-                                <div className="fp-modal__features">
-                                    <h4 className="fp-modal__features-heading">Key Features</h4>
-                                    <ul className="fp-modal__features-list">
-                                        {selectedProject.keyFeatures.map((feat, i) => (
-                                            <li key={i}>{feat}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                <a
-                                    href={selectedProject.link}
-                                    className="fp-modal__cta"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                        {(() => {
+                            const hasGallery =
+                                !!selectedProject.gallery && selectedProject.gallery.length > 0;
+                            return (
+                                <div
+                                    className={`fp-modal__body${hasGallery ? "" : " fp-modal__body--no-gallery"
+                                        }`}
                                 >
-                                    View Live Project
-                                    <span className="fp-modal__cta-arrow">↗</span>
-                                </a>
-                            </div>
+                                    {/* ── Info panel ── */}
+                                    <div className="fp-modal__info">
+                                        <h3 className="fp-modal__title">{selectedProject.title}</h3>
+                                        <span className="fp-modal__subtitle">
+                                            {selectedProject.subtitle}
+                                        </span>
 
-                            {/* Right – Image Gallery */}
-                            <div className="fp-modal__gallery">
-                                {/* Row 1: 2 images side by side */}
-                                <div className="fp-modal__gallery-row fp-modal__gallery-row--top">
-                                    <div className="fp-modal__gallery-item fp-modal__gallery-item--wide">
-                                        <img src={selectedProject.gallery[0]} alt="Gallery 1" />
+                                        <p className="fp-modal__desc">{selectedProject.description}</p>
+
+                                        <div className="fp-modal__features">
+                                            <h4 className="fp-modal__features-heading">Key Features</h4>
+                                            <ul className="fp-modal__features-list">
+                                                {selectedProject.keyFeatures.map((feat, i) => (
+                                                    <li key={i}>{feat}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        {/* Technologies */}
+                                        {Object.keys(selectedProject.technologies).length > 0 && (
+                                            <div className="fp-modal__tech">
+                                                <h4 className="fp-modal__features-heading">Technologies</h4>
+                                                <div className="fp-modal__tech-badges">
+                                                    <ul className="fp-modal__features-list">
+
+                                                        {Object.values(selectedProject.technologies)
+                                                            .flat()
+                                                            .map((tech, i) => (
+                                                                <li key={i}>{tech}</li>
+                                                            ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <a
+                                            href={selectedProject.codeLink}
+                                            className="fp-modal__cta"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            See Code
+                                            <span className="fp-modal__cta-arrow">↗</span>
+                                        </a>
                                     </div>
-                                    <div className="fp-modal__gallery-item fp-modal__gallery-item--tall">
-                                        <img src={selectedProject.gallery[1]} alt="Gallery 2" />
-                                    </div>
+
+                                    {/* ── Gallery panel (only when images exist) ── */}
+                                    {hasGallery && (
+                                        <div className="fp-modal__gallery">
+                                            {/* Row 1: 2 images side by side */}
+                                            <div className="fp-modal__gallery-row fp-modal__gallery-row--top">
+                                                <div className="fp-modal__gallery-item fp-modal__gallery-item--wide">
+                                                    <img src={selectedProject.gallery![0]} alt="Gallery 1" />
+                                                </div>
+                                                <div className="fp-modal__gallery-item fp-modal__gallery-item--tall">
+                                                    <img src={selectedProject.gallery![1]} alt="Gallery 2" />
+                                                </div>
+                                            </div>
+                                            {/* Row 2: 1 wide image */}
+                                            <div className="fp-modal__gallery-row">
+                                                <div className="fp-modal__gallery-item fp-modal__gallery-item--full">
+                                                    <img src={selectedProject.gallery![2]} alt="Gallery 3" />
+                                                </div>
+                                            </div>
+                                            {/* Row 3: 2 images side by side */}
+                                            <div className="fp-modal__gallery-row fp-modal__gallery-row--bottom">
+                                                <div className="fp-modal__gallery-item">
+                                                    <img src={selectedProject.gallery![3]} alt="Gallery 4" />
+                                                </div>
+                                                <div className="fp-modal__gallery-item">
+                                                    <img src={selectedProject.gallery![4]} alt="Gallery 5" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                                {/* Row 2: 1 wide image */}
-                                <div className="fp-modal__gallery-row">
-                                    <div className="fp-modal__gallery-item fp-modal__gallery-item--full">
-                                        <img src={selectedProject.gallery[2]} alt="Gallery 3" />
-                                    </div>
-                                </div>
-                                {/* Row 3: 2 images side by side */}
-                                <div className="fp-modal__gallery-row fp-modal__gallery-row--bottom">
-                                    <div className="fp-modal__gallery-item">
-                                        <img src={selectedProject.gallery[3]} alt="Gallery 4" />
-                                    </div>
-                                    <div className="fp-modal__gallery-item">
-                                        <img src={selectedProject.gallery[4]} alt="Gallery 5" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            );
+                        })()}
                     </div>
                 </div>
             )}
