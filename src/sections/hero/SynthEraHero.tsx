@@ -1,5 +1,6 @@
 import "./SynthEraHero.css";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import SocialLinks from "../../components/socialLinks/SocialLinks";
 import gsap from "gsap";
 const SynthEraHero = () => {
@@ -96,7 +97,7 @@ const SynthEraHero = () => {
             <a href="#about">About</a>
           </li>
           <li>
-            <a href="/blog">Blog</a>
+            <Link to="/blog">Blog</Link>
           </li>
           <li>
             <a href="#contact">Contact</a>
