@@ -113,7 +113,7 @@ const SynthEraHero = () => {
           <p className="card-description">{techStack.join(" • ")}</p>
         </div>
 
-        {/* Center Content - Moved Left */}
+        {/* Center Content */}
         <div className="center">
           <h1 className="headline" ref={headlineRef}>
             <span className="headline-armor">SACHITH</span>
