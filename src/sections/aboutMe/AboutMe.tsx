@@ -9,7 +9,7 @@ const AboutMe = () => {
   const rightExitRef = useExitAnimation("right");
 
   return (
-    <div className="about-me-section">
+    <div className="about-me-section" id="about">
       <div className="about-content">
         <h1 className="about-title" ref={titleRef as any}>
           Software Engineer &

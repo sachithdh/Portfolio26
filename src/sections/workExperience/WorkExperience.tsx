@@ -29,7 +29,7 @@ export default function WorkExperience() {
   const workListRef = useStaggerChildren(0.2, 0.2);
 
   return (
-    <section className="work-section section-container" id="work">
+    <section className="work-section section-container" id="experience">
       <div className="work-header" ref={headerRef as any}>
         <div className="work-header-top">
           <div className="work-header-left">
