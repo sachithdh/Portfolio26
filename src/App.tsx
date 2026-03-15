@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import TopNavBar from "./components/topNavBar/TopNavBar";
 import WorkExperience from "./sections/workExperience/WorkExperience";
 import FeaturedProjects from "./sections/featuredProjects/FeaturedProjects";
 import SynthEraHero from "./sections/hero/SynthEraHero";
@@ -25,13 +26,16 @@ function Portfolio() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Portfolio />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/blog/create" element={<CreatePost />} />
-      <Route path="/blog/:id" element={<BlogPostPage />} />
-      <Route path="/login" element={<Login />} />
-    </Routes>
+    <>
+      <TopNavBar />
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/create" element={<CreatePost />} />
+        <Route path="/blog/:id" element={<BlogPostPage />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
   );
 }
 

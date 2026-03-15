@@ -1,6 +1,5 @@
 import "./SynthEraHero.css";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import SocialLinks from "../../components/socialLinks/SocialLinks";
 import gsap from "gsap";
 const SynthEraHero = () => {
@@ -78,35 +77,10 @@ const SynthEraHero = () => {
   };
 
   return (
-    <section className="hero" ref={heroRef}>
+    <section className="hero" id="hero" ref={heroRef}>
       <div className="hero-bg" style={getTransformStyle()}></div>
-      {/* Navigation */}
-      <nav className="hero-nav">
-        <div className="nav-brand">
-          <div className="brand-icon"></div>
-          <div className="brand-text">
-            <span className="brand-name">Sachith</span>
-            <span className="brand-name">Dhanushka</span>
-          </div>
-        </div>
-        <ul className="nav-links">
-          <li>
-            <a href="#work">Work</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <Link to="/blog">Blog</Link>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
-
       {/* Main Content */}
-      <div className="content">
+      <div className="content" id="content">
         {/* Tech Stack Card - Absolute Position */}
         <div className="tech-card card-absolute">
           <h3 className="card-title">TECH STACK</h3>
