@@ -10,7 +10,15 @@ const experiences = [
     location: "Port City, Colombo, SL",
     description:
       "Developing digital infrastructure for climate markets, carbon finance and Article 6 implementation.",
-    skills: ["React.js", "NestJs", "Docker", "Block Chain", "KeyCloak"],
+    skills: [
+      "React.js",
+      "NestJs",
+      "Docker",
+      "Block Chain",
+      "KeyCloak",
+      "RabbitMQ",
+      "PostgreSQL",
+    ],
   },
   {
     id: 2,
